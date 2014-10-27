@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--申明本应用名称，用于区分应用-->
+    <dubbo:application name="spring-dubbox"/>
+
+    <!--注册zookeeper地址, 如果zookeeper 安装到多个服务器，注册地址用逗号分隔。如：“127.0.0.1,127.0.0.1”-->
+    <dubbo:registry  address="zookeeper://127.0.0.1:2181"/>
+    <!--&lt;!&ndash; 使用zookeeper注册中心暴露服务地址 &ndash;&gt;-->
+    <!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
+
+    <!--注册dubbo-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!--和本地bean注册已有-->
+    <bean id="demoService" class="com.springapp.mvc.dubbox.service.DemoServiceImpl"></bean>
+
+    <!--用dubbo 注册服务接口-->
+    <dubbo:service interface="com.springapp.mvc.dubbox.service.DemoService" ref="demoService"/>
+
+</beans>
