@@ -21,7 +21,9 @@
     <!--和本地bean注册已有-->
     <bean id="demoService" class="com.springapp.mvc.dubbox.service.DemoServiceImpl"></bean>
 
+    <dubbo:annotation package="*" />
+
     <!--用dubbo 注册服务接口-->
-    <dubbo:service interface="com.springapp.mvc.dubbox.service.DemoService" ref="demoService"/>
+    <dubbo:service interface="com.springapp.mvc.dubbox.service.DemoService" ref="demoService" protocol="dubbo"/>
 
 </beans>
